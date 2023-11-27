@@ -1,0 +1,3 @@
+add vpn tunnel 1 type numbered local 169.254.0.208 remote 169.254.0.211 peer spoke1-remote-gw
+set interface vpnt1 state on
+save config

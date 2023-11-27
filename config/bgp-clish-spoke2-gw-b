@@ -1,0 +1,17 @@
+set router-id 10.150.1.2
+set AS 65010
+set bgp communities on
+set bgp external remote-as 65000 on
+set bgp external remote-as 65000 peer 10.150.1.250 on
+set bgp external remote-as 65000 peer 10.150.1.251 on
+set route-redistribution to bgp-as 65000 from bgp-as-number 65010 all-ipv4-routes on
+set route-redistribution to bgp-as 65010 from bgp-as-number 65000 all-ipv4-routes on
+set bgp external remote-as 65012 on
+set bgp external remote-as 65012 peer 169.254.1.211 on
+set bgp external remote-as 65012 peer 169.254.1.211 as-override on
+set bgp external remote-as 65012 peer 169.254.1.211 holdtime 30
+set bgp external remote-as 65012 peer 169.254.1.211 keepalive 10
+set inbound-route-filter bgp-policy 512 based-on-as as 65012 on
+set inbound-route-filter bgp-policy 512 accept-all-ipv4
+set route-redistribution to bgp-as 65012 from bgp-as-number 65010 all-ipv4-routes on
+set route-redistribution to bgp-as 65010 from bgp-as-number 65012 all-ipv4-routes on
